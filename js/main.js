@@ -12,8 +12,6 @@ function getRandomNumber (min, max) {
 getRandomNumber(2, 7);
 
 function checkLengthString (anyLine, maxLine) {
-  if (maxLine<= 140) {
-  }
   return (anyLine.length <= maxLine);
-  }
-  checkLengthString('some text', 15);
+}
+checkLengthString('some text', 15);
