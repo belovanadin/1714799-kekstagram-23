@@ -27,3 +27,10 @@ function getRandomPositiveInteger (a, b) {
   return Math.floor(result);
 }
 getRandomPositiveInteger(2,5);
+
+function checkStringLength (string, length) {
+  return string.length <= length;
+}
+checkStringLength('2',2);
+
+export {getRandomPositiveInteger, checkStringLength};
