@@ -1,5 +1,4 @@
-/* eslint-disable eol-last */
-function getRandomNumber (min, max) {
+const getRandomNumber = (min, max) => {
   if (min < 0) {
     throw new Error('Ошибка! Введите положительное число');
   }
@@ -9,13 +8,10 @@ function getRandomNumber (min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-getRandomNumber(2, 7);
+};
 
+const checkLengthString = (anyLine, maxLine) => anyLine.length <= maxLine;
 
-function checkLengthString (anyLine, maxLine) {
-  return (anyLine.length <= maxLine);
-}
 checkLengthString('some text', 15);
 
 const MAX_COUNT = 25;
@@ -75,4 +71,4 @@ const addPhotos = () => {
 };
 
 addPhotos();
-export {addPhotos};
+export {photos};
