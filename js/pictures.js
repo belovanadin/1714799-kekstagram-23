@@ -1,7 +1,14 @@
-import { showBigPicture } from './big-picture';
+import { showBigPicture, closeBigPicture } from './big-picture';
 import { photos } from './data';
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+
+const onBigPictureEscKeyDown = (evt) => {
+  if (evt.key === 'Escape' || evt.key === 'Esc') {
+    closeBigPicture();
+    document.removeEventListener('keydown', onBigPictureEscKeyDown);
+  }
+};
 
 const renderPhoto = (picture, comments, likes) => {
   const pictureElement = pictureTemplate.cloneNode(true);
@@ -11,6 +18,7 @@ const renderPhoto = (picture, comments, likes) => {
   pictureElement.addEventListener('click', (evt) => {
     evt.preventDefault();
     showBigPicture(picture, comments, likes);
+    document.addEventListener('keydown', onBigPictureEscKeyDown);
   });
   return pictureElement;
 };
@@ -23,5 +31,5 @@ const renderPhotos = () => {
   pictures.appendChild(fragment);
 };
 renderPhotos();
-export {renderPhotos};
+export {renderPhotos, onBigPictureEscKeyDown};
 
