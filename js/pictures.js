@@ -1,5 +1,5 @@
-import { showBigPicture, closeBigPicture } from './big-picture';
-import { photos } from './data';
+import { showBigPicture, closeBigPicture } from './big-picture.js';
+
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -10,26 +10,25 @@ const onBigPictureEscKeyDown = (evt) => {
   }
 };
 
-const renderPhoto = (picture, comments, likes) => {
+const renderPhoto = ({url, comments, likes}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
-  pictureElement.querySelector('.picture__img').src = picture.url;
+  pictureElement.querySelector('.picture__img').src = url;
   pictureElement.querySelector('.picture__comments').textContent = comments.length;
   pictureElement.querySelector('.picture__likes').textContent = likes;
   pictureElement.addEventListener('click', (evt) => {
     evt.preventDefault();
-    showBigPicture(picture, comments, likes);
+    showBigPicture(pictures, comments, likes);
     document.addEventListener('keydown', onBigPictureEscKeyDown);
   });
   return pictureElement;
 };
 
 const fragment = document.createDocumentFragment();
-const renderPhotos = () => {
+const renderPhotos = (photos) => {
   photos.forEach((item) => {
     fragment.appendChild(renderPhoto(item));
   });
   pictures.appendChild(fragment);
 };
-renderPhotos();
-export {renderPhotos, onBigPictureEscKeyDown};
 
+export {renderPhotos, onBigPictureEscKeyDown};

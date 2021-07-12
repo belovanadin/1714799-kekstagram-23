@@ -65,7 +65,7 @@ const addPhotos = () => {
       url: `photos/${index + 1}.jpg`,
       description: 'самое лучшее фото',
       likes: getRandomNumber(Likes.MIN, Likes.MAX),
-      comments: [getComments()],
+      comments: getComments(),
     });
   }
 };
