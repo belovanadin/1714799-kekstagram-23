@@ -1,4 +1,5 @@
-import {onBigPictureEscKeyDown} from './picture.js';
+import {onBigPictureEscKeyDown} from './pictures.js';
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const pictureCloseElement = document.querySelector('.big-picture__cancel');
