@@ -15,7 +15,7 @@ const checkLengthString = (anyLine, maxLine) => anyLine.length <= maxLine;
 checkLengthString('some text', 15);
 
 const MAX_COUNT = 25;
-const MAX_COMMENTS = 3;
+const MAX_COMMENTS = 15;
 const MAX_AVATAR = 6;
 const Likes = {
   MAX: 200,

@@ -1,14 +1,15 @@
-import { showBigPicture, closeBigPicture } from './big-picture.js';
+import { showBigPicture, handleClose} from './big-picture.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
+
 const onBigPictureEscKeyDown = (evt) => {
   if (evt.key === 'Escape' || evt.key === 'Esc') {
-    closeBigPicture();
-    document.removeEventListener('keydown', onBigPictureEscKeyDown);
+    handleClose();
   }
 };
+
 
 const renderPhoto = ({url, comments, likes}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
