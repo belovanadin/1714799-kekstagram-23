@@ -16,11 +16,11 @@ const controlSmaller = body.querySelector('.scale__control--smaller');
 const controlBigger = body.querySelector('.scale__control--bigger');
 
 const imagePreview = body.querySelector('.img-upload__preview');
-const image = imagePreview.querySelector('img');
+/*const image = imagePreview.querySelector('img');
 
 const effectsList = body.querySelector('.effects__list');
 
-let currentEffect = '';
+let currentEffect = ''; */
 
 const closeForm = () => {
   overlay.classList.add('hidden');
@@ -76,7 +76,7 @@ controlBigger.addEventListener('click', () => {
 });
 
 
-effectsList.addEventListener('click', (evt) => {
+/*effectsList.addEventListener('click', (evt) => {
   let target = evt.target;
 
   if (target.classList.contains('effects__label')) {
@@ -92,6 +92,7 @@ effectsList.addEventListener('click', (evt) => {
     image.classList.add(currentEffect);
   }
 });
+*/
 
 const inputHashtag = document.querySelector('.text__hashtags');
 inputHashtag.addEventListener('input', () => {
