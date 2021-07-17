@@ -78,7 +78,6 @@ const showBigPicture = (url, comments, likes, description) => {
   bigPictureImg.src = url;
   likesCount.textContent = likes;
   pictureCaption.textContent = description;
-
   addComments(comments);
 };
 
