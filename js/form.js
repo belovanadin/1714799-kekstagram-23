@@ -1,3 +1,4 @@
+import {image, effects} from './effect.js';
 
 const Zoom = {
   MAX: 100,
@@ -16,11 +17,6 @@ const controlSmaller = body.querySelector('.scale__control--smaller');
 const controlBigger = body.querySelector('.scale__control--bigger');
 
 const imagePreview = body.querySelector('.img-upload__preview');
-const image = imagePreview.querySelector('img');
-
-const effectsList = body.querySelector('.effects__list');
-
-let currentEffect = '';
 
 const closeForm = () => {
   overlay.classList.add('hidden');
@@ -44,6 +40,7 @@ fileUpload.addEventListener('change', (evt) => {
   evt.preventDefault();
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
+  image.style.filter = effects.none();
   document.addEventListener('keydown', onCloseFormEscKeyDown);
 });
 
@@ -75,23 +72,6 @@ controlBigger.addEventListener('click', () => {
   imagePreview.style.transform = `scale(${size / 100})`;
 });
 
-
-effectsList.addEventListener('click', (evt) => {
-  let target = evt.target;
-
-  if (target.classList.contains('effects__label')) {
-    target = evt.target.querySelector('span');
-  }
-
-  if (target.classList.contains('effects__preview')) {
-    if (currentEffect !== '') {
-      image.classList.remove(currentEffect);
-    }
-
-    currentEffect = target.classList[1];
-    image.classList.add(currentEffect);
-  }
-});
 
 const inputHashtag = document.querySelector('.text__hashtags');
 inputHashtag.addEventListener('input', () => {
