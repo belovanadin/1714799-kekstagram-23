@@ -124,3 +124,5 @@ inputHashtag.addEventListener('input', () => {
     inputHashtag.style.border = 'none';
   }
 });
+
+export {closeForm};
