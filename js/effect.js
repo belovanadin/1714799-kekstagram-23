@@ -1,6 +1,6 @@
 
 
-//const DEFAULT_EFFECT_LEVEL = 100;
+const DEFAULT_EFFECT_LEVEL = 100;
 
 const Slider = {
   MAX: 100,
@@ -43,7 +43,7 @@ const effects = {
   },
 };
 
-effectLevelValue.value = 100;
+effectLevelValue.value = DEFAULT_EFFECT_LEVEL;
 let currentEffect = '';
 
 noUiSlider.create(sliderElement, {
@@ -73,6 +73,9 @@ effectsList.addEventListener('click', (evt) => {
     if (currentEffect !== '') {
       image.classList.remove(currentEffect);
     }
+
+    sliderElement.noUiSlider.set(Slider.MAX);
+    effectLevelValue.value = Slider.MAX;
 
     currentEffect = target.classList[1];
     image.classList.add(currentEffect);
