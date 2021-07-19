@@ -22,7 +22,7 @@ const closeForm = () => {
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   imagePreview.style.transform = '';
-  imagePreview.className = '';
+  imagePreview.className = 'img-upload__preview';
   imagePreview.style.filter = 'none';
   formUpload.reset();
 };
@@ -78,7 +78,7 @@ inputHashtag.addEventListener('input', () => {
 
   const invalidMessage = [];
   inputHashtag.setCustomValidity('');
-  const inputText = inputHashtag.value.toLowerCase().trim(); //переводим нижний регистр
+  const inputText = inputHashtag.value.toLowerCase().trim();
   if (!inputText) {
     return;
   }
@@ -124,3 +124,5 @@ inputHashtag.addEventListener('input', () => {
     inputHashtag.style.border = 'none';
   }
 });
+
+export {closeForm};
