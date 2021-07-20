@@ -8,5 +8,16 @@ const getRandomPositiveInteger = (a, b) => {
 
 const checkStringLength = (string, length) => string.length <= length;
 
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
 
-export {getRandomPositiveInteger, checkStringLength};
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+
+  };
+};
+
+
+export {getRandomPositiveInteger, checkStringLength, debounce};
