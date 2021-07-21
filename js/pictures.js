@@ -10,6 +10,12 @@ const onBigPictureEscKeyDown = (evt) => {
   }
 };
 
+const removePhotos = () => {
+  const photos = pictures.querySelectorAll('.picture');
+  if (photos) {
+    photos.forEach((photo) => photo.remove());
+  }
+};
 
 const renderPhoto = ({url, comments, likes, description}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
@@ -32,4 +38,4 @@ const renderPhotos = (photos) => {
   pictures.appendChild(fragment);
 };
 
-export {renderPhotos, onBigPictureEscKeyDown};
+export {renderPhotos, onBigPictureEscKeyDown, removePhotos};
