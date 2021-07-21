@@ -1,11 +1,12 @@
 import { showBigPicture, handleClose} from './big-picture.js';
+import {isEscPressed} from './utils.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 
 const onBigPictureEscKeyDown = (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (isEscPressed(evt)) {
     handleClose();
   }
 };

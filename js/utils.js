@@ -22,4 +22,6 @@ const shuffleArray = (array) => {
   return array;
 };
 
-export {checkStringLength, debounce, shuffleArray};
+const isEscPressed = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+export {checkStringLength, debounce, shuffleArray, isEscPressed};

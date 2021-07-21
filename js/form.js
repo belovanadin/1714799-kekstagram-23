@@ -1,12 +1,14 @@
 import {image, effects} from './effect.js';
+import {isEscPressed} from './utils.js';
+
+const MAX_SYMBOL = 20;
+const MAX_HASHTAGS = 5;
 
 const Zoom = {
   MAX: 100,
   MIN: 25,
   STEP: 25,
 };
-const MAX_SYMBOL = 20;
-const MAX_HASHTAGS = 5;
 const body = document.querySelector('body');
 const fileUpload = body.querySelector('#upload-file');
 const overlay = body.querySelector('.img-upload__overlay');
@@ -28,7 +30,7 @@ const closeForm = () => {
 };
 
 const onCloseFormEscKeyDown = (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (isEscPressed(evt)) {
     closeForm();
     document.removeEventListener('keydown', onCloseFormEscKeyDown);
     evt.preventDefault();
@@ -102,8 +104,8 @@ inputHashtag.addEventListener('input', () => {
   if (isSplitSpaceHashtag) {
     invalidMessage.push('Хеш-теги разделяются пробелами');
   }
-
-  const isRepeatHashtag = inputArray.some((item, i) => item.indexOf(item, i + 1) >= i + 1);
+  const itemSet = new Set (inputArray);
+  const isRepeatHashtag = inputArray.some((item) => item.length !== itemSet.size);
   if (isRepeatHashtag) {
     invalidMessage.push('Один и тот же хеш-тег не может быть использован дважды');
   }
