@@ -1,15 +1,22 @@
 import { showBigPicture, handleClose} from './big-picture.js';
+import {isEscPressed} from './utils.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 
 const onBigPictureEscKeyDown = (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (isEscPressed(evt)) {
     handleClose();
   }
 };
 
+const removePhotos = () => {
+  const photos = pictures.querySelectorAll('.picture');
+  if (photos) {
+    photos.forEach((photo) => photo.remove());
+  }
+};
 
 const renderPhoto = ({url, comments, likes, description}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
@@ -32,4 +39,4 @@ const renderPhotos = (photos) => {
   pictures.appendChild(fragment);
 };
 
-export {renderPhotos, onBigPictureEscKeyDown};
+export {renderPhotos, onBigPictureEscKeyDown, removePhotos};

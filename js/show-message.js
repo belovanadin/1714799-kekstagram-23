@@ -1,5 +1,6 @@
 import { request } from './fetch.js';
 import {closeForm} from './form.js';
+import {isEscPressed} from './utils.js';
 
 const body = document.querySelector('body');
 const formUpload = document.querySelector('.img-upload__form');
@@ -12,7 +13,7 @@ const closePopupMessage = () => {
 };
 
 const onMessageEscKeydown = (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (isEscPressed(evt)) {
     closePopupMessage();
   }
 };
