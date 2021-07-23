@@ -12,25 +12,25 @@ const socialComments = bigPicture.querySelector('.social__comments');
 const socialCommentsCount = bigPicture.querySelector('.social__comment-count');
 const loadComments = bigPicture.querySelector('.comments-loader');
 
-let currentComents = COMMENTS_LOAD_STEP;
+let currentComments = COMMENTS_LOAD_STEP;
 let onloadCommentsButtonClick;
 const addComments = (comments) => {
-  socialComments.innerHTML = '';
+  socialComments.textContent = '';
   onloadCommentsButtonClick = () => {
-    currentComents += COMMENTS_LOAD_STEP;
+    currentComments += COMMENTS_LOAD_STEP;
     addComments(comments);
   };
-  currentComents = (currentComents > comments.length) ? comments.length : currentComents;
+  currentComments = (currentComments > comments.length) ? comments.length : currentComments;
 
-  const comentsSelected = comments.slice(0, currentComents);
+  const comentsSelected = comments.slice(0, currentComments);
 
-  if (comments.length <= COMMENTS_LOAD_STEP || currentComents >= comments.length) {
+  if (comments.length <= COMMENTS_LOAD_STEP || currentComments >= comments.length) {
     loadComments.classList.add('hidden');
   } else {
     loadComments.classList.remove('hidden');
   }
 
-  socialCommentsCount.textContent = `${currentComents} из ${comments.length} комментариев`;
+  socialCommentsCount.textContent = `${currentComments} из ${comments.length} комментариев`;
 
   const commentFragment = document.createDocumentFragment();
 
@@ -58,7 +58,7 @@ const addComments = (comments) => {
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  currentComents = COMMENTS_LOAD_STEP;
+  currentComments = 0;
 };
 
 const handleClose = () => {
