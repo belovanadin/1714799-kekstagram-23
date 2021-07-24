@@ -30,7 +30,7 @@ const closeForm = () => {
 };
 
 const onCloseFormEscKeyDown = (evt) => {
-  if (isEscPressed(evt)) {
+  if (isEscPressed(evt) && !evt.target.classList.contains('text__hashtags') &&  !evt.target.classList.contains('text__description')) {
     closeForm();
     document.removeEventListener('keydown', onCloseFormEscKeyDown);
     evt.preventDefault();
@@ -78,8 +78,11 @@ controlBigger.addEventListener('click', () => {
 const inputHashtag = document.querySelector('.text__hashtags');
 inputHashtag.addEventListener('input', () => {
 
-  const invalidMessage = [];
+  const invalidMessages = [];
+
   inputHashtag.setCustomValidity('');
+  inputHashtag.style.border = 'none';
+
   const inputText = inputHashtag.value.toLowerCase().trim();
   if (!inputText) {
     return;
@@ -89,38 +92,44 @@ inputHashtag.addEventListener('input', () => {
     return;
   }
 
+  const isWrongSymbols = inputArray.some((item) => !/^#[а-яёa-z0-9]{1,19}$/i.test(item));
+
+  if (isWrongSymbols) {
+    invalidMessages.push('Использованы недопустимые символы');
+  }
+
   const isStartNotHashtag = inputArray.some((item) => item[0] !== '#');
 
   if (isStartNotHashtag) {
-    invalidMessage.push('Хеш-тег должен начинатся с символа #');
+    invalidMessages.push('Хеш-тег должен начинатся с символа #');
   }
 
   const isOnlyLatticeHashtag = inputArray.some((item) => item === '#');
   if (isOnlyLatticeHashtag) {
-    invalidMessage.push('хеш-тег не может состоять только из одной решетки');
+    invalidMessages.push('хеш-тег не может состоять только из одной решетки');
   }
 
   const isSplitSpaceHashtag = inputArray.some((item) => item.indexOf('#', 1) >= 1);
   if (isSplitSpaceHashtag) {
-    invalidMessage.push('Хеш-теги разделяются пробелами');
+    invalidMessages.push('Хеш-теги разделяются пробелами');
   }
-  const itemSet = new Set (inputArray);
-  const isRepeatHashtag = inputArray.some((item) => item.length !== itemSet.size);
+
+  const isRepeatHashtag = inputArray.some((item, i, arr) => arr.indexOf(item, i + 1) >= i + 1);
   if (isRepeatHashtag) {
-    invalidMessage.push('Один и тот же хеш-тег не может быть использован дважды');
+    invalidMessages.push('Один и тот же хеш-тег не может быть использован дважды');
   }
 
   const isLongHashtag = inputArray.some((item) => item.length > MAX_SYMBOL);
   if (isLongHashtag) {
-    invalidMessage.push('Максимальная длина одного хеш-тега 20 символов, включая решётку');
+    invalidMessages.push('Максимальная длина одного хеш-тега 20 символов, включая решётку');
   }
 
   if (inputArray.length > MAX_HASHTAGS) {
-    invalidMessage.push('Нельзя болььше 5 хеш-тегов');
+    invalidMessages.push('Нельзя болььше 5 хеш-тегов');
   }
 
-  if (invalidMessage.length > 0) {
-    inputHashtag.setCustomValidity(invalidMessage.join('.\n'));
+  if (invalidMessages.length > 0) {
+    inputHashtag.setCustomValidity(invalidMessages.join('.\n'));
     inputHashtag.style.border = '2px solid red';
   } else {
     inputHashtag.style.border = 'none';

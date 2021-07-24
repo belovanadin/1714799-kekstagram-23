@@ -23,17 +23,19 @@ const onDocumentClick = () => {
   document.removeEventListener('keydown', onMessageEscKeydown);
 };
 
-const showSuccessMessage = () => {
-  const messageElement = successMessage.cloneNode(true);
+const showMessage = (messageElement) => {
   messageElement.addEventListener('click', onDocumentClick);
   body.appendChild(messageElement);
   document.addEventListener('keydown', onMessageEscKeydown, {once: true});
 };
+
+const showSuccessMessage = () => {
+  const messageElement = successMessage.cloneNode(true);
+  showMessage(messageElement);
+};
 const showErrorMessage = () => {
   const messageElement = errorMessage.cloneNode(true);
-  messageElement.addEventListener('click', onDocumentClick);
-  body.appendChild(messageElement);
-  document.addEventListener('keydown', onMessageEscKeydown, {once: true});
+  showMessage(messageElement);
 };
 
 formUpload.addEventListener('submit', (evt) => {

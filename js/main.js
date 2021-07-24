@@ -1,9 +1,10 @@
 import './form.js';
 import { renderPhotos } from './pictures.js';
 import './effect.js';
-import './show-message.js';
+import './messages.js';
 import { request } from './fetch.js';
 import './filters.js';
+import './preview.js';
 
 let photos = [];
 
